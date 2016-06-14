@@ -99,9 +99,14 @@ module.exports = React.createClass(assign({
         point = VALIDATE(point)
 
         this.hsv.h = point.y * 360 / point.height
-
-        if (this.hsv.h != 0){
-            this.state.h = this.hsv.h
+        
+        // all colors on the hue slider have 1 as saturation and value,
+        // so lets set the corresponding attributes to 1
+        if (!this.hsv.s){
+            this.hsv.s = 1;
+        }
+        if (!this.hsv.v){
+            this.hsv.v = 1;
         }
 
         this.state.h = this.hsv.h != 0? this.hsv.h: 0
